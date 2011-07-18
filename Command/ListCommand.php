@@ -11,6 +11,8 @@
  */
 namespace Etcpasswd\SymfonyBundlerBundle\Command;
 
+use Etcpasswd\SymfonyBundlerBundle\Specification\BundleSpecification;
+
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -42,18 +44,20 @@ class ListCommand extends BaseCommand
         
         foreach($list as $descriptor)
         {
-            $output->write($this->formatDescriptor($descriptor));
+            $output->writeln($this->formatDescriptor($descriptor));
         }
     }
     
     /**
      * Formats a descriptor for the console
      *
-     * @param BundleDescriptor $descriptor Descriptor to format
+     * @param BundleSpecification $descriptor Descriptor to format
      * @return string
      */
-    protected function formatDescriptor($descriptor)
+    protected function formatDescriptor(BundleSpecification $descriptor)
     {
-        return '444';
+        $str = $descriptor->getName();
+        
+        return $str;
     }
 }

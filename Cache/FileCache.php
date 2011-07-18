@@ -76,6 +76,10 @@ class FileCache implements Cache
     /* {@inheritdoc} */
     public function set($key, \Serializable $data)
     {
+        if(!is_dir($this->path))
+        {
+            mkdir($this->path, 0777, true);
+        }
         $fp = fopen($this->resolveFilename($key), 'w+');
         fputs($fp, serialize($data));
         fclose($fp);

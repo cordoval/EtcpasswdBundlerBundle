@@ -12,6 +12,10 @@
 
 namespace Etcpasswd\SymfonyBundlerBundle\Services;
 
+use Etcpasswd\SymfonyBundlerBundle\Specification\BundleSpecification;
+
+use Etcpasswd\SymfonyBundlerBundle\Specification\SpecificationCollection;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 /**
@@ -55,11 +59,23 @@ class DiscoveryService implements ContainerAwareInterface
     /**
      * Retrieves a list of all bundles
      *
-     * @return BundleDescriptor[]
+     * @return SpecificationCollection
      */
     public function listBundles()
     {
-        return array();
+        if($this->cache->has('bundles.list'))
+        {
+            return $this->cache->get('bundles.list');
+        }
+        $list = $this->getJson('http://symfony2bundles.org/best?format=json');
+        $entries = new SpecificationCollection();
+        foreach($list as $entry)
+        {
+            $entries->attach($this->createDescriptorFromJson($entry));
+        }
+        $this->cache->set('bundles.list', $entries, 3600);
+        
+        return $entries;
     }
     
     /**
@@ -73,4 +89,38 @@ class DiscoveryService implements ContainerAwareInterface
         $it = new RegexIterator($all, '.*'.$name.'.*');
     }
     
+    /**
+     * Creates a bundle descriptor for the provided json
+     *
+     * @param object $json Json result
+     *
+     * @return BundleSpecification
+     */
+    private function createDescriptorFromJson($object)
+    {
+        $spec = new BundleSpecification($object->name, $object->description, $object->homepage);
+        return $spec;
+    }
+    
+    
+    /**
+     * Returns json data from a given url
+     *
+     * @param string $url url to retrieve
+     *
+     * @return object
+     */
+    private function getJson($url)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 10);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        
+        if(!$result) {
+            throw new \RuntimeExecption("Unable to fetch contents from $url");
+        }
+        return json_decode($result);
+    }
 }
