@@ -56,7 +56,8 @@ class ListCommand extends BaseCommand
      */
     protected function formatDescriptor(BundleSpecification $descriptor)
     {
-        $str = $descriptor->getName();
+        $str = str_pad($descriptor->getName(), 40);
+        $str .= $descriptor->getDescription();
         
         return $str;
     }
