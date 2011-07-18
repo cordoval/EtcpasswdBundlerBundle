@@ -8,11 +8,13 @@ fetches them for you if necessary.
 Installation
 ==========
 Clone the bundler package by adding it as a submodule
- git submodule add git@github.com:mazen/SymfonyBundlerBundle.git vendor/bundles/Etcpasswd
+
+    git submodule add git@github.com:mazen/SymfonyBundlerBundle.git vendor/bundles/Etcpasswd
 
 Configure the autoloader
+
     app/autoload.php
- 
+    
     $loader->registerNamespaces(array(
         'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
         'Sensio'           => __DIR__.'/../vendor/bundles',
@@ -45,5 +47,7 @@ request with your bundles specs.
 Credits
 ==========
 Thanks go to:
+
 Fabien for his great framework
+
 knp labs for the symfony2bundles.org website and its api
