@@ -33,6 +33,16 @@ class DiscoveryService implements ContainerAwareInterface
     protected $container;
     
     /**
+     * @var Cache
+     */
+    protected $cache;
+    
+    public function __construct($cache)
+    {
+        $this->cache = $cache;
+    }
+    
+    /**
      * Sets the Container.
      *
      * @param ContainerInterface $container A ContainerInterface instance

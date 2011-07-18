@@ -30,6 +30,7 @@ Usage
 The Bundler can be used with symfonys console application
 
     app/console bundler:list             shows installed bundles
+    app/console bundler:info             shows detailed information about the given bundle
     app/console bundler:search           searches for remote bundles by the given name
     app/console bundler:available        shows available bundles for installation
     app/console bundler:install          installs the given bundle

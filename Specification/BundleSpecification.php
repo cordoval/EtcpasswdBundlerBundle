@@ -25,6 +25,16 @@ namespace Etcpasswd\SymfonyBundlerBundle\Specification;
 class BundleSpecification
 {
     /**
+     * Returns a list of authors of the given bundle
+     *
+     * @return array
+     */
+    public function getAuthors()
+    {
+        
+    }
+    
+    /**
      * Returns the name of the bundle
      *
      * @return string
