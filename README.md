@@ -36,13 +36,12 @@ The Bundler can be used with symfonys console application
 
     app/console bundler:install          installs the given bundle
     app/console bundler:spec:update-all  updates all spec files
+    app/console bundler:list             shows available bundles
     
 The following commands are planned but not yet implemented
 
-    app/console bundler:list             shows installed bundles
     app/console bundler:info             shows detailed information about the given bundle
     app/console bundler:search           searches for remote bundles by the given name
-    app/console bundler:available        shows available bundles for installation
     app/console bundler:update           update all installed bundles to their latest version
     app/console bundler:spec:create      Creates a new spec file for your bundle  
  
