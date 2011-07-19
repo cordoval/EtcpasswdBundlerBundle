@@ -13,8 +13,6 @@
 
 namespace Etcpasswd\SymfonyBundlerBundle\Manipulator;
 
-use Zend\Reflection\ReflectionFile;
-
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -36,12 +34,12 @@ class AutoloaderManipulator extends Manipulator
      */
     public function __construct($file)
     {
-        $this->reflected = new ReflectionFile($file);
+        $this->file = $file;
     }
     
     public function addNamespace($namespace, $folder)
     {
-        $src = file($this->reflected->getFilename());
+        $src = file($this->file);
         $this->setCode(token_get_all(implode('',$src)));
         while ($token = $this->next()) {
             // ->
@@ -86,7 +84,7 @@ class AutoloaderManipulator extends Manipulator
                     array_slice($src, $this->line )
                 );
             
-                file_put_contents($this->reflected->getFilename(), implode('', $lines));
+                file_put_contents($this->file, implode('', $lines));
             
                 return true;
             }
