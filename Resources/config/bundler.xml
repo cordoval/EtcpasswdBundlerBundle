@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="symfony_bundler.spec.repository">git@github.com:mazen/SymfonyBundles.git</parameter>
+        <parameter key="symfony_bundler.spec.repository">http://github.com/mazen/SymfonyBundles.git</parameter>
         <parameter key="symfony_bundler.spec.path">%kernel.root_dir%/../vendor/bundles/Etcpasswd/SymfonyBundles</parameter>
         <parameter key="symfony_bundler.vendor_path">%kernel.root_dir%/../vendor</parameter>
     </parameters>
