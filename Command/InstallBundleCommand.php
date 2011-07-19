@@ -68,10 +68,30 @@ class InstallBundleCommand extends BaseCommand
         /* @var $scm ScmService */
         $scm = $this->getContainer()->get('symfony_bundler.scmservice');
         
+        $branch = isset($source['branch']) ? $source['branch'] : null ;
+
         // fetch bundle
-        $scm -> checkoutRepository($source['url'], $installRoot.'/bundles/'.$source['target']);
+        $scm -> checkoutRepository(
+            $source['url'],
+            $installRoot.'/bundles/'.$source['target'],
+            $source['scm'],
+            $branch
+        );
         
         // fetch dependencies
+        foreach($spec['dependencies'] as $name => $dep)
+        {
+            $output->writeln("Checking out Dependency '".$name."' to ".$dep['target']);
+            
+            $branch = isset($dep['branch']) ? $dep['branch'] : null;
+            
+            $scm->checkoutRepository(
+                $dep['url'],
+                $installRoot.'/'.$dep['target'],
+                $dep['scm'],
+                $branch
+            );
+        }
         
         // register autoloader namespaces
         foreach($spec['config']['autoloader']['namespaces'] as $namespace)
@@ -94,9 +114,8 @@ class InstallBundleCommand extends BaseCommand
     {
         $kernel_root = $this->getContainer()->getParameter("kernel.root_dir");
         $manip = new AutoloaderManipulator($kernel_root.'/autoload.php');
-        
         $target    = $namespace['target'];
-        $namespace = $namespace['namespace'];
+        $namespace = str_replace('\\','\\\\',$namespace['namespace']);
         if($target == 'default' ) {
             $target = "__DIR__.'/../vendor/bundles'";
             

@@ -41,11 +41,11 @@ class ScmService
      *
      * @return void
      */
-    public function checkoutRepository($url, $target, $scmType=self::TYPE_GIT)
+    public function checkoutRepository($url, $target, $scmType=self::TYPE_GIT, $branch = null)
     {
         switch($scmType) {
             case 'git':
-                $process = $this->getGitProcess($url, $target);
+                $process = $this->getGitProcess($url, $target, $branch);
                 break;
             case 'svn':
                 break;
@@ -68,8 +68,11 @@ class ScmService
      *
      * @return Process
      */
-    private function getGitProcess($url, $target)
+    private function getGitProcess($url, $target, $branch = null)
     {
+        if(is_null($branch)) {
+            $branch = 'origin';
+        }
         // lookup binary
         $finder = new ExecutableFinder();
         $command = $finder->find('git', null);
@@ -80,8 +83,8 @@ class ScmService
         
         if(is_dir($target.'/.git')) {
             // simple pull
-            return new Process($command.' pull origin master', $target);
+            return new Process($command.' pull '.$branch, $target);
         }
-        return new Process($command.' clone '.$url.' '.$target);
+        return new Process($command.' clone -b '.$branch.' '.$url.' '.$target);
     }
 }
