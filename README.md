@@ -45,7 +45,7 @@ To Bundle Developers
 ==========
 If you want to have your bundle added to this tool, please provide a spec file for it. 
 You can either add it to your own bundles repository if it is hosted on github (there 
-is a scraper running regularly to update these), or alternativly create a pull 
+(will be) a scraper running regularly to update these), or alternativly create a pull 
 request with your bundles specs.
 Check <http://github.com/mazen/SymfonyBundles> for examples 
 
