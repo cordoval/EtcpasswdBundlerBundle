@@ -25,6 +25,11 @@ Configure the autoloader
 And register the bundle itself. I promise that this will be the last time you have done 
 it this way.
 
+After that bundle installation is quite easy:
+
+    app/console bundler:spec:update-all
+    app/console bundler:install FOS/RestBundle
+
 Usage
 ==========
 The Bundler can be used with symfonys console application
