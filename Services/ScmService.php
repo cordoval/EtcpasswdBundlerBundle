@@ -54,7 +54,8 @@ class ScmService
         }
         $process -> run(function($output){});
         if(!$process->isSuccessful()) {
-            throw new \RuntimeException('Error fetching specs from the given repository location ('.$url.')');
+            throw new \RuntimeException('Error fetching specs from the given'
+                .' repository location ('.$url.')');
         }
     }
     
@@ -73,7 +74,8 @@ class ScmService
         $finder = new ExecutableFinder();
         $command = $finder->find('git', null);
         if(is_null($command)) {
-            throw new \RuntimeException("Unable to find the command 'git'. Please make sure it is installed");
+            throw new \RuntimeException("Unable to find the command 'git'."
+                ."Please make sure it is installed");
         }
         
         if(is_dir($target.'/.git')) {

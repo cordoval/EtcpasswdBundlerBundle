@@ -50,13 +50,14 @@ class UpdateAllSpecsCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repository = $this->getContainer()->getParameter('symfony_bundler.spec.repository');
-        $vendorPath = $this->getContainer()->getParameter('symfony_bundler.vendor_path');
-        $installPath = $vendorPath.'/Etcpasswd/SymfonyBundles';
+        $repository = $this->getContainer()
+            ->getParameter('symfony_bundler.spec.repository');
+        $path = $this->getContainer()
+            ->getParameter('symfony_bundler.spec.path');
         
         /* @var $scm ScmService */
         $scm = $this->getContainer()->get('symfony_bundler.scmservice');
-        $scm -> checkoutRepository($repository, $installPath);
+        $scm -> checkoutRepository($repository, $path);
         
         $output->writeln("Specs updated successfully");
     }
