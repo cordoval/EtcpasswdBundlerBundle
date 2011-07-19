@@ -4,12 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <parameter key="symfony_bundler.spec.repository">git@github.com:mazen/SymfonyBundles.git</parameter>
+    
         <parameter key="symfony_bundler.cache.class">Etcpasswd\SymfonyBundlerBundle\Cache\FileCache</parameter>
         <parameter key="symfony_bundler.cache.path">%kernel.root_dir%/cache/bundler</parameter>
+        <parameter key="symfony_bundler.vendor_path">%kernel.root_dir%/../vendor</parameter>
+        <parameter key="symfony_bundler.use_git_submodules">false</parameter>
     </parameters>
     <services>
         <service id="symfony_bundler.cache" class="%symfony_bundler.cache.class%">
             <argument type="string">%symfony_bundler.cache.path%</argument>
+        </service>
+        
+        <service id="symfony_bundler.scmservice" class="Etcpasswd\SymfonyBundlerBundle\Services\ScmService">
         </service>
     
         <service id="symfony_bundler.discoveryservice" class="Etcpasswd\SymfonyBundlerBundle\Services\DiscoveryService">

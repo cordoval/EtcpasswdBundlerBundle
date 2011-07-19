@@ -9,7 +9,7 @@ Installation
 ==========
 Clone the bundler package by adding it as a submodule
 
-    git submodule add git@github.com:mazen/SymfonyBundlerBundle.git vendor/bundles/Etcpasswd
+    git submodule add git@github.com:mazen/SymfonyBundlerBundle.git vendor/Etcpasswd/SymfonyBundlerBundle
 
 Configure the autoloader
 
@@ -18,7 +18,7 @@ Configure the autoloader
     $loader->registerNamespaces(array(
         'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
         'Sensio'           => __DIR__.'/../vendor/bundles',
-        'Etcpasswd'        => __DIR__.'/../vendor/bundles',
+        'Etcpasswd'        => __DIR__.'/../vendor',
         //...
     ));
  

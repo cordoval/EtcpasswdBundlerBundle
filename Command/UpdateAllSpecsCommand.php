@@ -9,23 +9,35 @@
  * @version   1.0
  * @link      http://www.etcpasswd.de
  */
+
 namespace Etcpasswd\SymfonyBundlerBundle\Command;
 
-use Etcpasswd\SymfonyBundlerBundle\Specification\BundleSpecification;
+use Etcpasswd\SymfonyBundlerBundle\Services\ScmService;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
-class ListCommand extends BaseCommand
+/**
+ * Updates the spec files from the remote repository
+ *
+ * @category  project_name
+ * @package   package_name
+ * @author    Marcel Beerta <marcel@etcpasswd.de>
+ * @license   http://www.opensource.org/licenses/lgpl-license.php LGPL
+ * @version   1.0
+ * @link      http://www.etcpasswd.de
+ */
+class UpdateAllSpecsCommand extends BaseCommand
 {
     /**
      * Configures the current command.
      */
     protected function configure()
     {
-        $this->setName('bundler:list');
-        $this->setDescription('shows installed bundles');
+        $this->setName('bundler:spec:update-all');
+        $this->setDescription('updates all spec files');
     }
+    
     /**
      * Executes the current command.
      *
@@ -38,27 +50,14 @@ class ListCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /* @var $service Etcpasswd\SymfonyBundlerBundle\Services\DiscoveryService */
-        $service = $this->getContainer()->get('symfony_bundler.discoveryservice');
-        $list    = $service->listBundles();
+        $repository = $this->getContainer()->getParameter('symfony_bundler.spec.repository');
+        $vendorPath = $this->getContainer()->getParameter('symfony_bundler.vendor_path');
+        $installPath = $vendorPath.'/Etcpasswd/SymfonyBundles';
         
-        foreach($list as $descriptor)
-        {
-            $output->writeln($this->formatDescriptor($descriptor));
-        }
-    }
-    
-    /**
-     * Formats a descriptor for the console
-     *
-     * @param BundleSpecification $descriptor Descriptor to format
-     * @return string
-     */
-    protected function formatDescriptor(BundleSpecification $descriptor)
-    {
-        $str = str_pad($descriptor->getName(), 40);
-        $str .= $descriptor->getDescription();
+        /* @var $scm ScmService */
+        $scm = $this->getContainer()->get('symfony_bundler.scmservice');
+        $scm -> checkoutRepository($repository, $installPath);
         
-        return $str;
+        $output->writeln("Specs updated successfully");
     }
 }
