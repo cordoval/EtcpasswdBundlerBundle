@@ -79,18 +79,20 @@ class InstallBundleCommand extends BaseCommand
         );
         
         // fetch dependencies
-        foreach($spec['dependencies'] as $name => $dep)
-        {
-            $output->writeln("Checking out Dependency '".$name."' to ".$dep['target']);
-            
-            $branch = isset($dep['branch']) ? $dep['branch'] : null;
-            
-            $scm->checkoutRepository(
-                $dep['url'],
-                $installRoot.'/'.$dep['target'],
-                $dep['scm'],
-                $branch
-            );
+        if(isset($spec['dependencies'])) {
+            foreach($spec['dependencies'] as $name => $dep)
+            {
+                $output->writeln("Checking out Dependency '".$name."' to ".$dep['target']);
+                
+                $branch = isset($dep['branch']) ? $dep['branch'] : null;
+                
+                $scm->checkoutRepository(
+                    $dep['url'],
+                    $installRoot.'/'.$dep['target'],
+                    $dep['scm'],
+                    $branch
+                );
+            }
         }
         
         // register autoloader namespaces
