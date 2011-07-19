@@ -26,6 +26,7 @@ And register the bundle itself. I promise that this will be the last time you ha
 it this way.
 
 After that bundle installation is quite easy:
+
     app/console bundler:spec:update-all
     app/console bundler:install FOS/RestBundle
 
