@@ -54,7 +54,7 @@ class ScmService
         }
         $process -> run(function($output){});
         if(!$process->isSuccessful()) {
-            throw new \RuntimeException('Error fetching specs from the given'
+            throw new \RuntimeException('Error fetching source from the given'
                 .' repository location ('.$url.')');
         }
     }
@@ -71,7 +71,7 @@ class ScmService
     private function getGitProcess($url, $target, $branch = null)
     {
         if(is_null($branch)) {
-            $branch = 'origin';
+            $branch = 'master';
         }
         // lookup binary
         $finder = new ExecutableFinder();
@@ -83,7 +83,7 @@ class ScmService
         
         if(is_dir($target.'/.git')) {
             // simple pull
-            return new Process($command.' pull '.$branch, $target);
+            return new Process($command.' pull . '.$branch, $target);
         }
         return new Process($command.' clone -b '.$branch.' '.$url.' '.$target);
     }

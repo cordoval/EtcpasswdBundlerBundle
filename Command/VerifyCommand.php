@@ -68,7 +68,7 @@ class VerifyCommand extends BaseCommand
         $this->verifyTag($yaml, 'source');
         $this->verifyScm($yaml['source']);
         
-        if(is_array($yaml['dependencies'])) {
+        if(isset($yaml['dependencies']) && is_array($yaml['dependencies'])) {
             $this->verifyTag($yaml, 'dependencies');
             foreach($yaml['dependencies'] as $name => $dep) {
                 $this->verifyScm($dep);
