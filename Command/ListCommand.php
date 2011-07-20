@@ -10,7 +10,7 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Command;
+namespace Etcpasswd\BundlerBundle\Command;
 
 use Symfony\Component\Finder\Finder;
 
@@ -52,7 +52,7 @@ class ListCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $specs = $this->getContainer()->getParameter('symfony_bundler.spec.path');
+        $specs = $this->getContainer()->getParameter('etcpasswd_bundler.spec.path');
         if(!is_dir($specs)) {
             throw new \RuntimeException("No specs found. Did you run bundler:spec:update-all ?");
         }

@@ -9,7 +9,7 @@
  * @version   1.0
  * @link      http://www.etcpasswd.de
  */
-namespace Etcpasswd\SymfonyBundlerBundle;
+namespace Etcpasswd\BundlerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * @version   1.0
  * @link      http://www.etcpasswd.de
  */
-class EtcpasswdSymfonyBundlerBundle extends Bundle
+class EtcpasswdBundlerBundle extends Bundle
 {
     
 }

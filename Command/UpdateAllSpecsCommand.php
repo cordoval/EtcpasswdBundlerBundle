@@ -10,9 +10,9 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Command;
+namespace Etcpasswd\BundlerBundle\Command;
 
-use Etcpasswd\SymfonyBundlerBundle\Services\ScmService;
+use Etcpasswd\BundlerBundle\Services\ScmService;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
@@ -51,12 +51,12 @@ class UpdateAllSpecsCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $repository = $this->getContainer()
-            ->getParameter('symfony_bundler.spec.repository');
+            ->getParameter('etcpasswd_bundler.spec.repository');
         $path = $this->getContainer()
-            ->getParameter('symfony_bundler.spec.path');
+            ->getParameter('etcpasswd_bundler.spec.path');
         
         /* @var $scm ScmService */
-        $scm = $this->getContainer()->get('symfony_bundler.scmservice');
+        $scm = $this->getContainer()->get('etcpasswd_bundler.scmservice');
         $scm -> checkoutRepository($repository, $path);
         
         $output->writeln("Specs updated successfully");

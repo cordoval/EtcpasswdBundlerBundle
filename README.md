@@ -1,4 +1,4 @@
-SymfonyBundlerBundle
+BundlerBundle
 ==========
 This bundle allows you to easily mangage and install other Symfony2 Bundles.
 
@@ -9,7 +9,7 @@ Installation
 ==========
 Clone the bundler package by adding it as a submodule
 
-    git submodule add git@github.com:mazen/SymfonyBundlerBundle.git vendor/Etcpasswd/SymfonyBundlerBundle
+    git submodule add git@github.com:mazen/BundlerBundle.git vendor/Etcpasswd/BundlerBundle
 
 Configure the autoloader
 

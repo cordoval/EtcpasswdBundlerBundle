@@ -3,7 +3,7 @@
 <phpunit bootstrap="./Tests/bootstrap.php" color="true">
 
   <testsuites>
-    <testsuite name="EtcpasswdSymfonyBundlerBundle">
+    <testsuite name="EtcpasswdBundlerBundle">
       <directory suffix="Test.php">./Tests</directory>
     </testsuite>
   </testsuites>

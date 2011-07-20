@@ -4,12 +4,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="symfony_bundler.spec.repository">http://github.com/mazen/SymfonyBundles.git</parameter>
-        <parameter key="symfony_bundler.spec.path">%kernel.root_dir%/../vendor/bundles/Etcpasswd/SymfonyBundles</parameter>
-        <parameter key="symfony_bundler.vendor_path">%kernel.root_dir%/../vendor</parameter>
+        <parameter key="etcpasswd_bundler.spec.repository">http://github.com/mazen/SymfonyBundles.git</parameter>
+        <parameter key="etcpasswd_bundler.spec.path">%kernel.root_dir%/../vendor/bundles/Etcpasswd/SymfonyBundles</parameter>
+        <parameter key="etcpasswd_bundler.vendor_path">%kernel.root_dir%/../vendor</parameter>
     </parameters>
     <services>
-        <service id="symfony_bundler.scmservice" class="Etcpasswd\SymfonyBundlerBundle\Services\ScmService">
+        <service id="etcpasswd_bundler.scmservice" class="Etcpasswd\BundlerBundle\Services\ScmService">
         </service>
     </services>
 </container>

@@ -10,7 +10,7 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Command;
+namespace Etcpasswd\BundlerBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -55,7 +55,7 @@ class VerifyCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $specRoot = $this->getContainer()->getParameter('symfony_bundler.spec.path');
+        $specRoot = $this->getContainer()->getParameter('etcpasswd_bundler.spec.path');
         $filename = $input->getArgument('file').'.yml';
         
         $output->writeln("Checking spec in $specRoot/$filename");

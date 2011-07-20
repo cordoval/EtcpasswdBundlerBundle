@@ -9,7 +9,7 @@
  * @version   1.0
  * @link      http://www.etcpasswd.de
  */
-namespace Etcpasswd\SymfonyBundlerBundle\Services;
+namespace Etcpasswd\BundlerBundle\Services;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ExecutableFinder;
@@ -54,6 +54,7 @@ class ScmService
         }
         $process -> run(function($output){});
         if(!$process->isSuccessful()) {
+            var_dump($process->getErrorOutput());
             throw new \RuntimeException('Error fetching source from the given'
                 .' repository location ('.$url.')');
         }

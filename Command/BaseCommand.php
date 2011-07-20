@@ -10,7 +10,7 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Command;
+namespace Etcpasswd\BundlerBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 abstract class BaseCommand extends Command

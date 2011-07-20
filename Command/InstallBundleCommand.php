@@ -10,13 +10,13 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Command;
+namespace Etcpasswd\BundlerBundle\Command;
 
 use Sensio\Bundle\GeneratorBundle\Manipulator\KernelManipulator;
 
-use Etcpasswd\SymfonyBundlerBundle\Manipulator\AutoloaderManipulator;
-use Etcpasswd\SymfonyBundlerBundle\Loader\SpecFileLoader;
-use Etcpasswd\SymfonyBundlerBundle\Services\ScmService;
+use Etcpasswd\BundlerBundle\Manipulator\AutoloaderManipulator;
+use Etcpasswd\BundlerBundle\Loader\SpecFileLoader;
+use Etcpasswd\BundlerBundle\Services\ScmService;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Input\InputArgument;
@@ -64,10 +64,10 @@ class InstallBundleCommand extends BaseCommand
 
         
         $installRoot = $this->getContainer()
-            ->getParameter('symfony_bundler.vendor_path');
+            ->getParameter('etcpasswd_bundler.vendor_path');
         
         /* @var $scm ScmService */
-        $scm = $this->getContainer()->get('symfony_bundler.scmservice');
+        $scm = $this->getContainer()->get('etcpasswd_bundler.scmservice');
         
         $branch = isset($source['branch']) ? $source['branch'] : null ;
 
@@ -151,7 +151,7 @@ class InstallBundleCommand extends BaseCommand
      */
     private function getBundleSpecification($bundle)
     {
-        $specRoot = $this->getContainer()->getParameter('symfony_bundler.spec.path');
+        $specRoot = $this->getContainer()->getParameter('etcpasswd_bundler.spec.path');
         $locator = new FileLocator(array($specRoot));
         $fileLoader = new SpecFileLoader($locator);
         $fileLoader -> load($bundle.'.yml');

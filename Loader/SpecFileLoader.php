@@ -10,7 +10,7 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\Loader;
+namespace Etcpasswd\BundlerBundle\Loader;
 
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 

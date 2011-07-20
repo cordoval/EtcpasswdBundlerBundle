@@ -10,7 +10,7 @@
  * @link      http://www.etcpasswd.de
  */
 
-namespace Etcpasswd\SymfonyBundlerBundle\DependencyInjection;
+namespace Etcpasswd\BundlerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor,
     Symfony\Component\Config\FileLocator,
@@ -19,7 +19,8 @@ use Symfony\Component\Config\Definition\Processor,
     Symfony\Component\DependencyInjection\ContainerInterface,
     Symfony\Component\DependencyInjection\ContainerBuilder,
     Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-class EtcpasswdSymfonyBundlerExtension extends Extension
+
+class EtcpasswdBundlerExtension extends Extension
 {
     /*
      * {@inheritdoc}
@@ -33,6 +34,6 @@ class EtcpasswdSymfonyBundlerExtension extends Extension
      * {@inheritdoc}
     */
     public function getAlias() {
-        return 'etcpasswd_symfony_bundler';
+        return 'etcpasswd_bundler';
     }
 }
