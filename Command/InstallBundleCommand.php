@@ -12,8 +12,9 @@
 
 namespace Etcpasswd\SymfonyBundlerBundle\Command;
 
+use Sensio\Bundle\GeneratorBundle\Manipulator\KernelManipulator;
+
 use Etcpasswd\SymfonyBundlerBundle\Manipulator\AutoloaderManipulator;
-use Etcpasswd\SymfonyBundlerBundle\Manipulator\KernelManipulator;
 use Etcpasswd\SymfonyBundlerBundle\Loader\SpecFileLoader;
 use Etcpasswd\SymfonyBundlerBundle\Services\ScmService;
 

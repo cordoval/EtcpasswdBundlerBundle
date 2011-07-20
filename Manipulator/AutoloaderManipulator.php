@@ -13,6 +13,7 @@
 
 namespace Etcpasswd\SymfonyBundlerBundle\Manipulator;
 
+use Sensio\Bundle\GeneratorBundle\Manipulator\Manipulator;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
